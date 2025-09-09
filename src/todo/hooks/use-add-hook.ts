@@ -10,5 +10,9 @@ export const useAddHook = () => {
     setTodo('')
   }
 
-  return { todos, handleAddTodo, todo, setTodo }
+  const handleDeleteTodo = (id: number) => {
+    setTodos(todos.filter((todo) => todo.id !== id))
+  }
+
+  return { todos, handleAddTodo, todo, setTodo, handleDeleteTodo }
 }
