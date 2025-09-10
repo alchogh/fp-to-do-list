@@ -1,21 +1,34 @@
+import { Button } from '../../components/ui/Button'
 import type { Todo } from '../type'
 
 interface TodoListProps {
   todo: Todo
   handleDeleteTodo: (id: number) => void
+  handleEditTodo: (id: number) => void
 }
 
-export const TodoList = ({ todo, handleDeleteTodo }: TodoListProps) => {
+export const TodoList = ({
+  todo,
+  handleDeleteTodo,
+  handleEditTodo,
+}: TodoListProps) => {
   return (
     <li className="flex flex-row gap-2 w-full">
       <p className="flex-1">{todo.text}</p>
-      <button
-        className="bg-red-500 text-white rounded-md p-2"
+      <Button
+        size="sm"
+        variant="secondary"
         onClick={() => handleDeleteTodo(todo.id)}
       >
         Delete
-      </button>
-      <button className="bg-green-500 text-white rounded-md p-2">Edit</button>
+      </Button>
+      <Button
+        size="sm"
+        variant="outline"
+        onClick={() => handleEditTodo(todo.id)}
+      >
+        Edit
+      </Button>
     </li>
   )
 }

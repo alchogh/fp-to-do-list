@@ -1,8 +1,16 @@
-import { useAddHook } from '@/todo/hooks/use-add-hook'
+import { useTodoHook } from '@/todo/hooks/use-todo-hook'
 import { TodoList } from './components/todo-list'
+import { Button } from '../components/ui/Button'
 
 export default function TodoContainer() {
-  const { todos, handleAddTodo, todo, setTodo, handleDeleteTodo } = useAddHook()
+  const {
+    todos,
+    handleAddTodo,
+    todo,
+    setTodo,
+    handleDeleteTodo,
+    handleEditTodo,
+  } = useTodoHook()
 
   return (
     <section className="text-center flex flex-col items-center justify-center gap-10">
@@ -13,14 +21,15 @@ export default function TodoContainer() {
           value={todo}
           onChange={(e) => setTodo(e.target.value)}
         />
-        <button type="submit" className="bg-blue-500 text-white rounded-md p-2">
+        <Button size="sm" variant="primary" type="submit">
           Add
-        </button>
+        </Button>
       </form>
 
       <ul className="flex flex-col gap-4">
         {todos.map((todo) => (
           <TodoList
+            handleEditTodo={handleEditTodo}
             todo={todo}
             key={todo.id}
             handleDeleteTodo={handleDeleteTodo}
